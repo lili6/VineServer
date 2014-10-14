@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="?*.java" />
+      <entry name="?*.xml" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="vine-common" />
+        <module name="vine-core" />
+        <module name="vine-sample" />
+        <module name="vine-webapp" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.7">
+      <module name="vine-common" target="" />
+      <module name="vine-core" target="" />
+      <module name="vine-sample" target="" />
+      <module name="vine-webapp" target="" />
+      <module name="vineyard" target="" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
+
