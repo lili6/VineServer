@@ -14,12 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.mrd.dolphin.net.packet.Packet;
-import com.mrd.dolphin.net.packet.Packet.PacketType;
-import com.mrd.dolphin.net.packet.PacketConst;
-import com.mrd.dolphin.stat.IOFlowBean;
-import com.mrd.dolphin.utils.StringUtil;
+import vine.core.net.packet.Packet;
+import vine.core.net.packet.Packet.PacketType;
+import vine.core.net.packet.PacketConst;
+import vine.core.utils.StringUtil;
 
 /**
  * 基于Http的用户会话实现类
@@ -53,8 +51,6 @@ public class UserHttpSession extends UserSession implements Serializable {
 			willSendMsg = Packet.packHttpResponse(packet, PacketType.PB);
 		} else if (packet.getPacketType() == PacketType.JSON) {			
 			willSendMsg = Packet.packHttpResponse(packet, PacketType.JSON);
-		} else if (packet.getPacketType() == PacketType.STRING) {
-			willSendMsg = Packet.packHttpResponse(packet, PacketType.STRING);
 		}
 		 
 		int command = packet.getPacketId();// 使用请求的命令编号作为获取缓存的OutputStream的ID//		
@@ -64,7 +60,7 @@ public class UserHttpSession extends UserSession implements Serializable {
 			if(log.isDebugEnabled()) {log.debug("==packetId[{}],sessionId[{}],stream:{},",command,this.sessionId, stream);}
 			try {
 				stream.write(willSendMsg);
-				log.info("PacketId[{}]发送数据完毕! \n 响应buffer:\n[{}]",command,StringUtil.bytes2HexStr(willSendMsg));
+				log.info("PacketId[{}]发送数据完毕! \n 响应buffer:\n[{}]",command, StringUtil.bytes2HexStr(willSendMsg));
 			} catch (Exception e) {
 				log.error("响应数据出错：MessageId[{}]" , command); // TODO 设置响应数据
 				e.printStackTrace();

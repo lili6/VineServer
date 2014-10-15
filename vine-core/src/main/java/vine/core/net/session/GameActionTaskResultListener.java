@@ -8,14 +8,11 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import vine.core.net.action.ActionHandler;
+import vine.core.net.action.ActionTaskResultListener;
+import vine.core.net.packet.Packet;
+import vine.core.net.packet.PacketConst;
 
-import com.mrd.dolphin.net.action.ActionHandler;
-import com.mrd.dolphin.net.action.ActionTaskResultListener;
-import com.mrd.dolphin.net.packet.MessageFilterPool;
-import com.mrd.dolphin.net.packet.MessageFilterResult;
-import com.mrd.dolphin.net.packet.MessageOutFilter;
-import com.mrd.dolphin.net.packet.Packet;
-import com.mrd.dolphin.net.packet.PacketConst;
 
 /**
  * 异步类业务执行结果处理监听器，用于向客户端返回消息
@@ -36,7 +33,7 @@ public class GameActionTaskResultListener implements ActionTaskResultListener {
 	
 	public static void sendData(UserSession[] sessions, ActionHandler handler, Packet packet) {
 		int requestCmd = 1;
-		if (handler != null) requestCmd = handler.getCommand();		
+		if (handler != null) requestCmd = handler.getOpCode();
 		boolean isPush = false;
 		
 		for (UserSession session : sessions) {

@@ -1,5 +1,7 @@
 package vine.core.net.http;
 
+import vine.core.net.packet.PacketConst;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -10,8 +12,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.mrd.dolphin.net.packet.PacketConst;
 
 /**
  * CharacterFilter

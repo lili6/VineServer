@@ -7,8 +7,7 @@ import java.util.TimerTask;
 import org.apache.mina.util.ConcurrentHashSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.mrd.dolphin.net.packet.Packet;
+import vine.core.net.packet.Packet;
 
 /**
  * 用户客户端接收的消息缓冲推送Timer

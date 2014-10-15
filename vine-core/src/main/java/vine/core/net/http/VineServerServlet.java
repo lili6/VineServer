@@ -15,21 +15,12 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.mrd.dolphin.net.HOpCode;
-import com.mrd.dolphin.net.action.ActionRunner;
-import com.mrd.dolphin.net.packet.MessageFilter;
-import com.mrd.dolphin.net.packet.MessageFilterPool;
-import com.mrd.dolphin.net.packet.Packet;
-import com.mrd.dolphin.net.packet.Packet.PacketType;
-import com.mrd.dolphin.net.packet.PacketConst;
-import com.mrd.dolphin.net.session.GameActionTaskResultListener;
-import com.mrd.dolphin.net.session.UserHttpSession;
-import com.mrd.dolphin.net.session.UserSession;
-import com.mrd.dolphin.net.session.UserSessionClosedListener;
-import com.mrd.dolphin.net.session.UserSessionManager;
-import com.mrd.dolphin.thread.MessageDispatcher;
-import com.mrd.dolphin.utils.StringUtil;
+import vine.core.net.HOpCode;
+import vine.core.net.packet.MessageFilter;
+import vine.core.net.packet.MessageFilterPool;
+import vine.core.net.packet.Packet;
+import vine.core.net.packet.PacketConst;
+import vine.core.utils.StringUtil;
 
 /**
  * 游戏通讯处理Servlet，处理：<br/>
@@ -82,7 +73,7 @@ public class VineServerServlet extends HttpServlet {
 		//消息包类型
 		packetType = config.getInitParameter("packetType");
 		if (packetType == null) {
-			packetType = PacketType.PB.name(); // 缺省是PB格式，其他各种格式都要进行测试
+			packetType = Packet.PacketType.PB.name(); // 缺省是PB格式，其他各种格式都要进行测试
 		}
 	}
 
@@ -123,21 +114,21 @@ public class VineServerServlet extends HttpServlet {
 			log.error("[IP:{}]请求的消息错误[{}]",ip, buff);
 			//对错误的相应数据处理
 			Packet packet = Packet.packError(HOpCode.OPCODE_COMM_ERROR,
-					PacketConst.RETCODE_REQUEST_MESSAGE_EMPTY,PacketType.valueOf(packetType));
+					PacketConst.RETCODE_REQUEST_MESSAGE_EMPTY, Packet.PacketType.valueOf(packetType));
 			GameActionTaskResultListener.sendData(new UserSession[] {session}, null, packet);				
 			return;
 		}
 		log.info("接收[总长度：{}][HttpSessionId:{}][IP:{}] \n 请求buffer:\n[{}]",
 					buff.length, httpSession.getId(), ip, StringUtil.bytes2HexStr(buff));
 		
-		Packet m = Packet.parseHttpRequest(buff, PacketType.valueOf(packetType));// 解析消息数据
+		Packet m = Packet.parseHttpRequest(buff, Packet.PacketType.valueOf(packetType));// 解析消息数据
 		log.debug("包类型：[{}]，拆包后 :",packetType,m);
 		//根据消息类型组成不同的包类型		
 		if (m == null) {
 			log.error("[IP:" + ip + "]消息解析失败，消息内容：[{}]", m );			
 			// 对错误的相应数据处理
 			Packet packet = Packet.packError(HOpCode.OPCODE_COMM_ERROR,
-					PacketConst.RETCODE_MESSAGE_PARSE_ERROR,PacketType.valueOf(packetType));
+					PacketConst.RETCODE_MESSAGE_PARSE_ERROR, Packet.PacketType.valueOf(packetType));
 			log.error("组错误包返回...");
 			GameActionTaskResultListener.sendData(new UserSession[] {session}, null, packet);			
 			return;
@@ -146,7 +137,7 @@ public class VineServerServlet extends HttpServlet {
 			log.error("[IP:{}]请求消息包[{}]不存在,消息内容:[{}]", ip, PacketConst.PACKET_ID , m);
 			// 对错误的相应数据处理
 			Packet packet = Packet.packError(HOpCode.OPCODE_COMM_ERROR,
-					PacketConst.RETCODE_PACKETID_NOT_EXIST,PacketType.valueOf(packetType));
+					PacketConst.RETCODE_PACKETID_NOT_EXIST, Packet.PacketType.valueOf(packetType));
 			log.error("组错误包返回...");
 			GameActionTaskResultListener.sendData(new UserSession[] {session}, null, packet);	
 			return;

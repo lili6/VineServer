@@ -14,16 +14,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lmax.disruptor.EventHandler;
-import com.mrd.dolphin.data.cache.MemCachedTool;
-import com.mrd.dolphin.disruptor.Disruptor;
-import com.mrd.dolphin.disruptor.DisruptorFactory;
-import com.mrd.dolphin.net.session.event.RemoveSessionDisruptorEvent;
-import com.mrd.dolphin.net.session.event.UpdateSessionDisruptorEvent;
-
 /**
  * MemCached数据缓存方式处理
- * @author PanChao
+ * @author liguofang
  */
 public class MemSessionCache implements SessionCache {
 	private static final Logger log = LoggerFactory.getLogger(MemSessionCache.class);

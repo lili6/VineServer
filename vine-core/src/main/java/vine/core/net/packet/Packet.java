@@ -1,13 +1,10 @@
 package vine.core.net.packet;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.google.protobuf.Message;
-import com.mrd.dolphin.net.action.ActionData;
-import com.mrd.dolphin.utils.StringUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import vine.core.utils.StringUtil;
 
 /**
  * 定义数据包抽象类
@@ -23,7 +20,7 @@ public abstract class Packet{
     protected static PacketType packetType = null;
     /*消息对象类型*/
     public enum PacketType{
-        STRING, JSON ,PB
+        JSON ,PB
     }
     /*为消息ID 用来路由Action*/
   	private int packetId = 0;
@@ -141,8 +138,6 @@ public abstract class Packet{
 			try {
 				if (packetType == PacketType.JSON) {// JSON字符串
 					packet = new JsonPacket(str);					
-				} else if (packetType == PacketType.STRING) {// 自定义数据格式字符串
-					packet = new StringPacket(str);
 				}
 			} catch (Exception e) {
 				log.error("数据解析出错:{}\n 消息:\n{}", e, str);
@@ -211,21 +206,6 @@ public abstract class Packet{
 			System.arraycopy(_flag, 0, result,20 , 4);				
 			System.arraycopy(body, 0, result,24 , body.length);	
 			return result;						
-		} else if(type == PacketType.STRING) {	
-			ActionData actiondata = new ActionData();
-			if (retCode == PacketConst.RETCODE_SUCCESS) {
-				actiondata = (ActionData)packet.getData();	
-			}
-			byte[] body = actiondata.getBytes();  //TODO 返回数据不知道是否有分割符
-			byte[] result = new byte[24+body.length];// 不包含长度域。
-			byte[] bodyLen = StringUtil.intToByteArray(body.length);
-			System.arraycopy(bodyLen, 0, result,0 , 4);
-			System.arraycopy(pid, 0, result,4 , 4);
-			System.arraycopy(_stamp, 0, result,8 , 8);
-			System.arraycopy(retcode, 0, result,16 , 4);
-			System.arraycopy(_flag, 0, result,20 , 4);				
-			System.arraycopy(body, 0, result,24 , body.length);	
-			return result;
 		} else {
 			log.error("PacketType[{}] 不存在，组包错误！", type);
 		}		
@@ -246,8 +226,6 @@ public abstract class Packet{
 			packet = new PbPacket();						
 		} else if (type == PacketType.JSON) {
 			packet = new JsonPacket();
-		} else if (type == PacketType.STRING) {
-			packet = new StringPacket();
 		} else {
 			packet = new JsonPacket();
 		}
@@ -287,6 +265,5 @@ public abstract class Packet{
 		return "Packet [packetId=" + packetId + ", stamp=" + stamp
 				+ ", retCode=" + retCode + ", flag=" + flag + " data =" + getData() +"]";
 	}
-	
 
 }

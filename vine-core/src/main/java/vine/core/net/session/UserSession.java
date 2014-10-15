@@ -16,13 +16,9 @@ import java.util.concurrent.ConcurrentSkipListSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import vine.core.net.packet.MessageOutFilter;
+import vine.core.net.packet.Packet;
 
-import com.mrd.dolphin.net.packet.MessageFilterPool;
-import com.mrd.dolphin.net.packet.MessageFilterResult;
-import com.mrd.dolphin.net.packet.MessageOutFilter;
-import com.mrd.dolphin.net.packet.Packet;
-import com.mrd.dolphin.stat.IOFlowBean;
-import com.mrd.dolphin.thread.ThreadMessage;
 /**
  * 用户会话状态管理类
  * 
@@ -48,7 +44,7 @@ public abstract class UserSession implements Serializable {
 	/** 上次添加消息到缓存的时间 */
 	protected transient long messageLastAddTime = 0;
 	/** 上次实际发送给客户端的消息 */
-	protected transient Packet lastResponseMessage = null;	
+	protected transient Packet lastResponseMessage = null;
 	/** 缓存中等待的消息 */
 	protected transient List<Packet> waitMessage = Collections.synchronizedList(new ArrayList<Packet>());
 	protected ConcurrentLinkedQueue<Packet> waitMessageQueue = new ConcurrentLinkedQueue<Packet>();
@@ -218,13 +214,13 @@ public abstract class UserSession implements Serializable {
 	
 	/**
 	 * 立即响应消息，不缓冲
-	 * @param message 要发送的消息对象
+	 * @param packet 要发送的消息对象
 	 */
 	protected abstract void responseImmediately(Packet packet);
 	
 	/**
 	 * 向客户端响应消息，缓冲处理
-	 * @param message 要发送的消息对象
+	 * @param packet 要发送的消息对象
 	 */
 	public abstract void response(Packet packet);
 	

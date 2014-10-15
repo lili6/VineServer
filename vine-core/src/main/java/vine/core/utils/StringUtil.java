@@ -8,11 +8,9 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mrd.dolphin.net.session.UserHttpSession;
-
 /**
  * 字符串处理工具类
- * @author PanChao
+ * @author liguofang
  */
 public class StringUtil {
 	private static final Logger log = LoggerFactory.getLogger(StringUtil.class);
@@ -244,7 +242,7 @@ public class StringUtil {
 	
 	/**
 	 * long 转换为byteArray
-	 * @param i
+	 * @param s
 	 * @return byte[]
 	 */
 	public static byte[] longToByteArray(long s) {
