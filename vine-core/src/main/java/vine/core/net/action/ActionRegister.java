@@ -1,5 +1,7 @@
 package vine.core.net.action;
 
+import vine.core.net.action.clazz.ActionClassRegister;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +11,7 @@ import java.util.Map;
  */
 public abstract class ActionRegister {
     private static final ActionClassRegister classRegister = new ActionClassRegister();
-    private static final ActionScriptRegister scriptRegister = new ActionScriptRegister();
+//    private static final ActionScriptRegister scriptRegister = new ActionScriptRegister();
     private static ActionType actionType = null;
 
     protected Map<Integer, ActionHandler> commandActionMap = new HashMap<Integer, ActionHandler>();
@@ -27,7 +29,7 @@ public abstract class ActionRegister {
         if (actionType == ActionType.CLASS) {
             return classRegister;
         } else if (actionType == ActionType.SCRIPT) {
-            return scriptRegister;
+//            return scriptRegister;
         }
         return classRegister;// 如果类型未找到，默认使用Class类型的用户会话管理器
     }
@@ -40,7 +42,7 @@ public abstract class ActionRegister {
         if (actionType == ActionType.CLASS) {
             return classRegister;
         } else if (actionType == ActionType.SCRIPT) {
-            return scriptRegister;
+//            return scriptRegister;
         }
         return classRegister;// 如果类型未找到，默认使用Class类型的用户会话管理器
     }

@@ -21,7 +21,6 @@ import vine.core.utils.StringUtil;
 
 /**
  * 基于Http的用户会话实现类
- * @author PanChao
  * @author liguofang
  */
 public class UserHttpSession extends UserSession implements Serializable {
@@ -192,9 +191,4 @@ public class UserHttpSession extends UserSession implements Serializable {
 		return httpSession;
 	}
 
-	@Override
-	public Map<Integer, IOFlowBean> getIOFlow(int flag) {		
-		return null;
-	}
-		
 }

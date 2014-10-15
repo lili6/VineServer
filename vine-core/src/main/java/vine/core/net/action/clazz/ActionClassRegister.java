@@ -5,6 +5,8 @@ import net.sf.cglib.reflect.FastMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import vine.core.net.action.ActionRegister;
+import vine.core.spring.SpringBeanFactory;
+import vine.core.utils.ScanUtil;
 
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
@@ -85,7 +87,7 @@ public class ActionClassRegister extends ActionRegister {
                             throw new Exception(MessageFormat.format(
                                     "通讯模块初始化失败，模块<{0}, {1}, {2}>与<{3}, {4}, {5}>重复",
                                     command, clazz.getName(), m.getName(),
-                                    hasHandler.getCommand(), hasHandler.getAction().toString(), hasHandler.getMethod().getName()
+                                    hasHandler.getOpCode(), hasHandler.getAction().toString(), hasHandler.getMethod().getName()
                             ));
                         }
                         FastMethod fastM = cglibBeanClass.getMethod(m);
@@ -98,7 +100,7 @@ public class ActionClassRegister extends ActionRegister {
                     } else if (pushMAnn != null && pushMAnn.value() > 0 &&
                             pushMAnn.pushId() != null && !pushMAnn.pushId().equals("")) {// 是推送类Action
                         int subModuleId = pushMAnn.value();
-                        int command = moduleId * MODULE_BASE + subModuleId;
+                        int command = moduleId + subModuleId;
                         String pushId = pushMAnn.pushId();
 
                         ActionClassHandler hasHandler = (ActionClassHandler) commandActionMap.get(pushId);
@@ -106,7 +108,7 @@ public class ActionClassRegister extends ActionRegister {
                             throw new Exception(MessageFormat.format(
                                     "推送模块初始化失败，模块<{0}, {1}, {2}>与<{3}, {4}, {5}>重复",
                                     command, clazz.getName(), m.getName(),
-                                    hasHandler.getCommand(), hasHandler.getAction().toString(), hasHandler.getMethod().getName()
+                                    hasHandler.getOpCode(), hasHandler.getAction().toString(), hasHandler.getMethod().getName()
                             ));
                         }
                         hasHandler = (ActionClassHandler) pushActionMap.get(pushId);

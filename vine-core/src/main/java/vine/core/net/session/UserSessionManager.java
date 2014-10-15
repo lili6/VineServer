@@ -10,9 +10,8 @@ import javax.management.RuntimeErrorException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.mrd.dolphin.data.cache.CacheType;
-import com.mrd.dolphin.net.ServerType;
+import vine.core.cache.CacheType;
+import vine.core.net.ServerType;
 
 /**
  * 用户会话管理抽象类，包含mina类长连接会话管理和http类短连接会话管理两种

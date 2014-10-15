@@ -8,8 +8,8 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import vine.core.config.Configuration;
 
-import com.mrd.dolphin.config.Configuration;
 
 /**
  * 防火墙工具类

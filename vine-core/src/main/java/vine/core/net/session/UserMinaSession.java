@@ -16,10 +16,9 @@ import org.apache.mina.core.future.WriteFuture;
 import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import vine.core.net.packet.Packet;
+import vine.core.net.packet.PacketConst;
 
-import com.mrd.dolphin.net.packet.Packet;
-import com.mrd.dolphin.net.packet.PacketConst;
-import com.mrd.dolphin.stat.IOFlowBean;
 
 /**
  * 基于Mian框架的用户会话实现类
@@ -37,8 +36,7 @@ public class UserMinaSession extends UserSession implements Serializable {
 	private Map<Integer, IOFlowBean>  inMap = new ConcurrentHashMap<Integer, IOFlowBean>();
 	/** 响应消息包统计 */
 	private Map<Integer, IOFlowBean>  outMap = new ConcurrentHashMap<Integer, IOFlowBean>();
-	
-	@Override
+
 	public Map<Integer, IOFlowBean> getIOFlow(int flag) {
 		if (flag==1) {
 			return inMap;

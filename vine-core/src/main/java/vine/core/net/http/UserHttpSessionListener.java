@@ -5,8 +5,8 @@ import javax.servlet.http.HttpSessionListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import vine.core.net.session.UserSessionManager;
 
-import com.mrd.dolphin.net.session.UserSessionManager;
 
 /**
  * HTTP会话创建和销毁监听器，初始化/销毁用户会话对象

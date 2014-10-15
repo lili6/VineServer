@@ -16,8 +16,11 @@ import java.util.concurrent.ConcurrentSkipListSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import vine.core.net.packet.MessageFilterPool;
+import vine.core.net.packet.MessageFilterResult;
 import vine.core.net.packet.MessageOutFilter;
 import vine.core.net.packet.Packet;
+import vine.core.net.thread.ThreadMessage;
 
 /**
  * 用户会话状态管理类
@@ -228,11 +231,12 @@ public abstract class UserSession implements Serializable {
 	 * 获取请求和响应的的统计信息
 	 * @param flag 1:input ,0: output
 	 * @return
-	 */
 	public abstract Map<Integer, IOFlowBean> getIOFlow(int flag) ;
+    */
+
 	/**
 	 * 向客户端推送消息，缓冲处理
-	 * @param message
+	 * @param packet
 	 */
 	public abstract void push(Packet packet);
 	/**

@@ -18,7 +18,7 @@ public class MessageFilterResult {
 	private boolean next = true;	
 	/**
 	 * 构造过滤结果对象，并设置为继续处理下一步业务
-	 * @param message 过滤器收到的数据
+	 * @param packet 过滤器收到的数据
 	 */
 	public MessageFilterResult(Packet packet) {
 		super();
@@ -26,9 +26,8 @@ public class MessageFilterResult {
 	}
 	/**
 	 * 构造过滤结果对象
-	 * @param message 过滤器收到的数据
+	 * @param packet 过滤器收到的数据
 	 * @param next 是否继续业务处理，true为继续，false为停止
-	 * @param returnData 过滤后要返回给客户端的数据，仅在停止后面的业务处理时才使用
 	 */
 	public MessageFilterResult(Packet packet, boolean next) {
 		super();

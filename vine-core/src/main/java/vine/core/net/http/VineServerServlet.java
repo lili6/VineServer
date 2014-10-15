@@ -20,6 +20,8 @@ import vine.core.net.packet.MessageFilter;
 import vine.core.net.packet.MessageFilterPool;
 import vine.core.net.packet.Packet;
 import vine.core.net.packet.PacketConst;
+import vine.core.net.session.*;
+import vine.core.net.thread.MessageDispatcher;
 import vine.core.utils.StringUtil;
 
 /**
@@ -115,7 +117,7 @@ public class VineServerServlet extends HttpServlet {
 			//对错误的相应数据处理
 			Packet packet = Packet.packError(HOpCode.OPCODE_COMM_ERROR,
 					PacketConst.RETCODE_REQUEST_MESSAGE_EMPTY, Packet.PacketType.valueOf(packetType));
-			GameActionTaskResultListener.sendData(new UserSession[] {session}, null, packet);				
+			GameActionTaskResultListener.sendData(new UserSession[]{session}, null, packet);
 			return;
 		}
 		log.info("接收[总长度：{}][HttpSessionId:{}][IP:{}] \n 请求buffer:\n[{}]",
