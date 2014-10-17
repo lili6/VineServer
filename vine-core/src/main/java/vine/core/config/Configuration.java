@@ -54,7 +54,8 @@ public class Configuration  extends UsefulHashMap<Object, Object> {
      */
     protected void loadPropertiesForClass(ResourcePath path) {
         Properties prop = new Properties();
-        try (InputStream in = Configuration.class.getResourceAsStream(path.getPath())) {
+        try  {
+            InputStream in = Configuration.class.getResourceAsStream(path.getPath());
             prop.load(in);
         } catch (Exception e) {
             log.error("Classpath Properties init Failed. path:" + path, e);
@@ -67,7 +68,8 @@ public class Configuration  extends UsefulHashMap<Object, Object> {
      */
     protected void loadPropertiesForFile(ResourcePath path) {
         Properties prop = new Properties();
-        try (FileInputStream in = new FileInputStream(path.getPath())) {
+        try  {
+            FileInputStream in = new FileInputStream(path.getPath());
             prop.load(in);
         } catch (IOException e) {
             log.error("File Properties init Failed. path:" + path, e);

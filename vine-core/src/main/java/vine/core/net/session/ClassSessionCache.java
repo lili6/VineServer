@@ -19,8 +19,8 @@ import org.slf4j.LoggerFactory;
  */
 public class ClassSessionCache implements SessionCache {
 	private static final Logger log = LoggerFactory.getLogger(ClassSessionCache.class);
-	protected Map<String, UserSession> sessionIdMap = new ConcurrentHashMap<>();
-	protected Map<String, UserSession> userSessionMap = new ConcurrentHashMap<>();
+	protected Map<String, UserSession> sessionIdMap = new ConcurrentHashMap<String, UserSession>();
+	protected Map<String, UserSession> userSessionMap = new ConcurrentHashMap<String, UserSession>();
 	
 	ClassSessionCache(){}
 	
@@ -72,12 +72,12 @@ public class ClassSessionCache implements SessionCache {
 
 	@Override
 	public List<UserSession> getAllSession() {
-		return new ArrayList<>(sessionIdMap.values());
+		return new ArrayList<UserSession>(sessionIdMap.values());
 	}
 
 	@Override
 	public List<UserSession> getAllOnlineSession() {
-		return new ArrayList<>(userSessionMap.values());
+		return new ArrayList<UserSession>(userSessionMap.values());
 	}
 	
 	@Override

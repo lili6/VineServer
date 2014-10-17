@@ -22,9 +22,9 @@ public class Firewall {
 	/** 默认最大警告次数（时间范围内） */
 	public static int WARN_COUNT = 100;
 	/** 记录首次警告的时间 */
-	private static Map<String, Long> firstWarnTimeMap = new HashMap<>();
+	private static Map<String, Long> firstWarnTimeMap = new HashMap<String, Long>();
 	/** 记录时间范围内的警告次数 */
-	private static Map<String, Long> warnCountMap = new HashMap<>();
+	private static Map<String, Long> warnCountMap = new HashMap<String, Long>();
 	
 	static {
 		WARN_TIME_INTERVAL = Configuration.getInstance().getLong("firewall_warn_time_interval", WARN_TIME_INTERVAL);

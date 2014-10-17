@@ -34,7 +34,7 @@ public class ScanUtil {
 	 * @return
 	 */
 	public static Set<Class> scan(String basePackagesStr, Class annClazz){
-		Set<Class> classes = new LinkedHashSet<>();
+		Set<Class> classes = new LinkedHashSet<Class>();
 		if (basePackagesStr == null) return classes;
 		String[] basePackages = basePackagesStr.split(",");
 		for (String basePackage : basePackages) {
@@ -71,7 +71,7 @@ public class ScanUtil {
 	 * @return
 	 */
 	private static Set<Class> scanFiles(String packagePath, String filePath, Class annClazz) {
-		Set<Class> classes = new LinkedHashSet<>();
+		Set<Class> classes = new LinkedHashSet<Class>();
 		File dir = new File(filePath);
 		if (!dir.exists() || !dir.isDirectory()) {
 			return null;
@@ -106,7 +106,7 @@ public class ScanUtil {
 	 * @return
 	 */
 	private static Set<Class> scanJar(String packagePath, URL url, Class annClazz){
-		Set<Class> classes = new LinkedHashSet<>();
+		Set<Class> classes = new LinkedHashSet<Class>();
 		packagePath = packagePath.replace('.', '/');
 		JarFile jar;
 		try {

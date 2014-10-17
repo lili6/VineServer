@@ -41,9 +41,9 @@ public abstract class UserSession implements Serializable {
 	/** 是否压缩发送的数据，默认不压缩 */
 	protected boolean compressed = false;
 	/** 所有需要放到会话中属性列表*/
-	protected Map<String, Object> attributes = new HashMap<>();
+	protected Map<String, Object> attributes = new HashMap<String, Object>();
 	
-	protected transient Set<Integer> requestLocker = new ConcurrentSkipListSet<>();
+	protected transient Set<Integer> requestLocker = new ConcurrentSkipListSet<Integer>();
 	/** 上次添加消息到缓存的时间 */
 	protected transient long messageLastAddTime = 0;
 	/** 上次实际发送给客户端的消息 */
@@ -56,7 +56,7 @@ public abstract class UserSession implements Serializable {
 	protected long sentCount = 0;
 	
 	/** 用户会话关闭监听器 */
-	protected List<UserSessionClosedListener> closedListeners = new ArrayList<>();
+	protected List<UserSessionClosedListener> closedListeners = new ArrayList<UserSessionClosedListener>();
 	/** 用户会话创建监听器 */
 	protected List<UserSessionCreatedListener> createdListeners = new ArrayList<>();
 	/** 接收到消息的时间 */

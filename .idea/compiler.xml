@@ -23,11 +23,11 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
-      <module name="vine-common" target="" />
-      <module name="vine-core" target="" />
-      <module name="vine-sample" target="" />
-      <module name="vine-webapp" target="" />
-      <module name="vineyard" target="" />
+      <module name="vine-common" target="1.7" />
+      <module name="vine-core" target="1.7" />
+      <module name="vine-sample" target="1.7" />
+      <module name="vine-webapp" target="1.7" />
+      <module name="vineyard" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

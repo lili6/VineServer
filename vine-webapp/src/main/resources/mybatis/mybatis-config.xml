@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <setting name="lazyLoadingEnabled" value="false"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias alias="User" type="vine.sample.mybatis.User"></typeAlias>
+    </typeAliases>
+
+    <!--  -->
+    <typeHandlers>
+            <typeHandler
+                handler="vine.app.dao.manager.CodeEnumTypeHandler"
+                javaType="vine.app.model.enums.ApiTypeLevel"/>
+    </typeHandlers>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <!--property name="url" value="jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8" /-->
+                <property name="url" value="jdbc:mysql://localhost:3306/test" />
+                <property name="username" value="root" />
+                <property name="password" value="admin" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mybatis/mapper/user.xml"/>
+    </mappers>
+
+
+
+</configuration>

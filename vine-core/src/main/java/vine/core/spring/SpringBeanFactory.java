@@ -40,10 +40,10 @@ public class SpringBeanFactory {
                 ((ClassPathXmlApplicationContext)CONTEXT).addBeanFactoryPostProcessor(propHolder);
                 ((ClassPathXmlApplicationContext)CONTEXT).refresh();
             }
-            log.error("SpringBeanFactory初始化成功!");
+            log.error("AppBeanFactory初始化成功!");
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("SpringBeanFactory初始化出错", e);
+            log.error("AppBeanFactory初始化出错", e);
         }
     }
 

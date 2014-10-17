@@ -25,8 +25,8 @@ public class MemSessionCache implements SessionCache {
 	public static final String USERSESSION_COUNTER_KEY = "UserSession_Counter";
 	public static final String USERSESSIONIDS_KEY = "UserSessionIds_Key";
 	/** UserSession的缓存数据副本，保存被取过的用户缓存数据 */
-	protected Map<String, UserSession> sessionIdMap = new ConcurrentHashMap<>();
-	protected Map<String, UserSession> userSessionMap = new ConcurrentHashMap<>();
+	protected Map<String, UserSession> sessionIdMap = new ConcurrentHashMap<String, UserSession>();
+	protected Map<String, UserSession> userSessionMap = new ConcurrentHashMap<String, UserSession>();
 
 	MemSessionCache(){
 
@@ -74,7 +74,7 @@ public class MemSessionCache implements SessionCache {
 
 	@Override
 	public List<UserSession> getAllOnlineSession() {
-		List<String> idList = new ArrayList<>();
+		List<String> idList = new ArrayList<String>();
 
 		return null;
 	}

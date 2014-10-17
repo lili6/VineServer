@@ -24,7 +24,7 @@ public class MinaMessageCacheTask extends TimerTask {
 	private static int logCount = 0;
 	
 	private Timer timer = null;
-	private Set<UserSession> sessions = new ConcurrentHashSet<>();
+	private Set<UserSession> sessions = new ConcurrentHashSet<UserSession>();
 	
 	public static MinaMessageCacheTask getInstance() {
 		return instance;

@@ -28,7 +28,7 @@ public class UserHttpSession extends UserSession implements Serializable {
 	private static final Logger log = LoggerFactory.getLogger(UserHttpSession.class);
 	private transient HttpSession httpSession;
 	/*每个packetId对应一个stream*/
-	private transient Map<String, OutputStream> streams = new HashMap<>();
+	private transient Map<String, OutputStream> streams = new HashMap<String, OutputStream>();
 	private String remoteAddr;
 
 	UserHttpSession(HttpSession httpSession){
@@ -161,7 +161,7 @@ public class UserHttpSession extends UserSession implements Serializable {
 				httpResponse.setDateHeader("Expires",0);
 				httpResponse.setHeader("Cache-Control","no-cache");
 				OutputStream stream = httpResponse.getOutputStream();
-				if (streams == null) streams = new HashMap<>();
+				if (streams == null) streams = new HashMap<String, OutputStream>();
 				if(log.isDebugEnabled()) {log.debug("设置输出流缓存:SessionId[{}]",sessionId);}
 				streams.put(sessionId, stream);
 				if(log.isDebugEnabled()) {log.debug("设置输出流缓存Streams:[{}]",streams);}

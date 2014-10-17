@@ -1,8 +1,63 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" metadata-complete="true" version="3.0">
+    <display-name>vineapp</display-name>
+    <!-- Spring3 begin -->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:context/context-*.xml</param-value>
+    </context-param>
+    <!-- Spring3 end -->
 
-<web-app>
-  <display-name>vine</display-name>
+    <listener>
+        <description>初始化</description>
+        <listener-class>application.InitListener</listener-class>
+    </listener>
+    <listener>
+        <description>监听HttpSession，创建/销毁UserSession</description>
+        <listener-class>application.SessionListener</listener-class>
+    </listener>
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>vine.core.net.http.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>VineServerServlet</servlet-name>
+        <servlet-class>vine.core.net.http.VineServerServlet</servlet-class>
+        <init-param>
+            <param-name>UserSessionClosedLis</param-name>
+            <param-value>application.SaveUserListener</param-value>
+        </init-param>
+        <init-param>
+            <param-name>MessageFilter</param-name>
+            <param-value>application.RequestInFilter,application.RequestOutFilter</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VineServerServlet</servlet-name>
+        <url-pattern>/server</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>0</session-timeout>
+    </session-config>
+    <filter>
+        <display-name>ClearCacheFilter</display-name>
+        <filter-name>ClearCacheFilter</filter-name>
+        <filter-class>application.ClearCacheFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ClearCacheFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
 
 </web-app>
