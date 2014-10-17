@@ -4,7 +4,7 @@ package vine.core.net;
  * Created by liguofang on 2014/10/14.
  * ProtoBuf协议基类
  * 协议范围<1-65536>
- *     系统保留1-1000，其他功能模块应用从10001开始，分段计数
+ *     系统保留1-10000，其他功能模块应用从10001开始，分段计数
  */
 public class HOpCode {
     /* 接收到的消息包为心跳包*/
